@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import {AuthContext} from"../src/authContext/AuthContext" //for authentication
 import "./app.scss"
 import Login from "./components/pages/login/Login";
 import Register from "./components/pages/register/Register";
@@ -8,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes , Navigate} from "react-router-d
 
 const App = () => {
   const user = true;
+  // const {user} = useContext(AuthContext);
   return (
     <Router>
       <Routes>
@@ -16,10 +19,10 @@ const App = () => {
 
         <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
 
-        <Route path="/login" element={!user ? <Register /> : <Navigate to="/" />} />
+        <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         { user && (
           <>
-        <Route path="/movies" element={<Home type="movies" />} />
+        <Route path="/movies" element={<Home type="movie" />} />
 
         <Route path="/series" element={<Home type="series" />} />
 

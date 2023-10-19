@@ -5,7 +5,7 @@ import axios from "axios";
 import { BaseUrl } from "../../../config"
 import "../featured/featured.scss";
 
-export default function Featured({ type }) {
+export default function Featured({ type,setGenre }) {
     const [content, setContent] = useState({});  //use this to pass any type or random content movies to display
 
 
@@ -33,7 +33,9 @@ export default function Featured({ type }) {
             {type && (
                 <div className="category">
                     <span>{type === "movies" ? "Movies" : "Series"}</span>
-                    <select name="genre" id="genre">
+                    <select name="genre" id="genre" 
+                    onChange={e=>setGenre(e.target.value)}
+                    >
                         <option>Genre</option>
                         <option value="Adventure">Adventure</option>
                         <option value="Comedy">Comedy</option>

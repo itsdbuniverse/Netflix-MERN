@@ -76,7 +76,7 @@ export default function ListItem({ index, item }) {
       try{
         const res = await axios.get(BaseUrl + "movies/find/"+item,{
           headers : {
-            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGQzM2E3YzZmZGYzNzk0NjRhOGI5ZjQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTIxOTA4NDh9.a-4w___qIfr8p5pq6TKvCtrtOfEMg9Z3HWnyzf7D98Y",
+            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTA4ODIwMzI3MTcyMjU1MWU1NmMzZmUiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTUwNTY0NDksImV4cCI6MTcyNjU5MjQ0OX0.uVm1LF5XJiePSU-WX3RvZuFqR4fWWgsvbGZ1rD-yYwg",
           },
         });
         console.log("res.data" , res.data)

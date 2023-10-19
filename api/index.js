@@ -37,7 +37,10 @@ const listRoute = require("./routes/lists");
 // const data = require('./data');
 const List = require('./models/List');
 const Movie = require('./models/Movie');
+const multer = require('multer');
+const path = require('path');
 
+app.use('/images/',express.static('uploads'));
 app.use(cors())
 dontenv.config('./.env')
 console.log(process.env.MONGO_URL)
@@ -62,6 +65,44 @@ const connectTodb = () => {
   app.use("/api/lists", listRoute);
 }
 
+
+// uploading file code start
+
+
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.post('/upload', upload.array('file'), (req, res) => {
+  if (!req.files) {
+    return res.status(400).send('No files were uploaded.');
+  }
+console.log(req.files)
+  const fileArray = []
+  for (const iterator of req.files) {
+    fileArray.push(`http://localhost:5005/images/${iterator.filename}`)
+  }
+  res.status(200).json({
+    message : "File uploaded successfully !",
+    urls : fileArray
+  })
+});
+
+
+// uploadind file code end
 app.listen(port, () => {
   // addList();
   connectTodb()

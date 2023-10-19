@@ -59,7 +59,7 @@ const Home = ({ type , user }) => {
             genre ? "&genre=" + genre : ""}`,
           {
             headers : {
-              token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGQzM2E3YzZmZGYzNzk0NjRhOGI5ZjQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTIwNDI4NTgsImV4cCI6MTY5NDYzNDg1OH0.ouut2iqz__G-iijmx6CKvFtnEFMREdkjrLC9weGcaFU",
+              token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGQzM2E3YzZmZGYzNzk0NjRhOGI5ZjQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTIxOTA4NDh9.a-4w___qIfr8p5pq6TKvCtrtOfEMg9Z3HWnyzf7D98Y",
             },
           }
         ); //calling list from list api,We goona use list url and if we have type series or movies as we have done in api and if we have genre
@@ -78,7 +78,7 @@ const Home = ({ type , user }) => {
   return (
     <div className="home">
       <Navbar />
-      <Featured />
+      <Featured type={type} setGenre={setGenre}/>
       {lists.map((list) => (
         <List list={list}/>
       ))}
